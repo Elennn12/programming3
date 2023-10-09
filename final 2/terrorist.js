@@ -1,4 +1,5 @@
-class Terrorist {
+let LivingCreature = require ("./livingcreature.js")
+module.exports = class Terrorist extends LivingCreature {
 
     constructor(x, y, index) {
         this.x = x;
