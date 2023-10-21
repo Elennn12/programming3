@@ -107,7 +107,7 @@ function run ()
     }
 
 
-    create();
+    run();
 
     io.on('connection', function (socket) {
 

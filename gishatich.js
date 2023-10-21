@@ -55,15 +55,15 @@ module.exports = class Gishatich extends LivingCreature{
 
     // }
 
-    // mul() {
-    //     var newCell = random(this.chooseCell(0));
-    //     if (newCell) {
-    //         var newGishatich = new Gishatich(newCell[0], newCell[1], this.index);
-    //         GishatichArr.push(newGishatich);
-    //         matrix[newCell[1]][newCell[0]] = 3;
-    //         this.energy = 30
-    //     }
-    // }
+    mul() {
+        var newCell = random(this.chooseCell(0));
+        if (newCell) {
+            var newGishatich = new Gishatich(newCell[0], newCell[1], this.index);
+            GishatichArr.push(newGishatich);
+            matrix[newCell[1]][newCell[0]] = 3;
+            this.energy = 30
+        }
+    }
     move() {
 
         this.energy--;

@@ -53,15 +53,15 @@ module.exports =class GrassEater extends LivingCreature {
         return super.chooseCell(ch);
     }
 
-    // mul() {
-    //     var newCell = random(this.chooseCell(0));
-    //     if (newCell) {
-    //         var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
-    //         grassEaterArr.push(newGrassEater);
-    //         matrix[newCell[1]][newCell[0]] = 2;
-    //         this.energy = 30
-    //     }
-    // }
+    mul() {
+        var newCell = random(this.chooseCell(0));
+        if (newCell) {
+            var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
+            grassEaterArr.push(newGrassEater);
+            matrix[newCell[1]][newCell[0]] = 2;
+            this.energy = 30
+        }
+    }
     move() {
 
         this.energy--;
