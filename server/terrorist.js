@@ -1,4 +1,5 @@
 let LivingCreature = require ("./livingcreature.js")
+let random = require("./random");
 module.exports = class Terrorist extends LivingCreature {
 
     // constructor(x, y, index) {
@@ -19,18 +20,18 @@ module.exports = class Terrorist extends LivingCreature {
 
 
     // }
-    // getNewCoordinates() {
-    //     this.directions = [
-    //         [this.x - 1, this.y - 1],
-    //         [this.x, this.y - 1],
-    //         [this.x + 1, this.y - 1],
-    //         [this.x - 1, this.y],
-    //         [this.x + 1, this.y],
-    //         [this.x - 1, this.y + 1],
-    //         [this.x, this.y + 1],
-    //         [this.x + 1, this.y + 1]
-    //     ];
-    // }
+    getNewCoordinates() {
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+    }
     // chooseCell(character) {
     //     var found = [];
     //     for (var i in this.directions) {
@@ -47,13 +48,14 @@ module.exports = class Terrorist extends LivingCreature {
     //     return found;
 
     // }
-
+    
     chooseCell(ch){
         this.getNewCoordinates();
         return super.chooseCell(ch);
     }
     
     mul() {
+        let random = require("./random");
         var newCell = random(this.chooseCell(0));
         if (newCell) {
             var newTerrorist = new Terrorist(newCell[0], newCell[1], this.index);

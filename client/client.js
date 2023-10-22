@@ -1,9 +1,12 @@
 var socket = io()
+socket.on("matrix", handlematrix)
+var side = 400
+function setup() {
+    
+    createCanvas(side,side);
+    background('#acacac');}
 
-createCanvas(matrix[0].length * side, matrix.length * side);
-    background('#acacac');
-
-    function draw() {
+    function handlematrix(matrix) {
 
         for (var y = 0; y < matrix.length; y++) {
             for (var x = 0; x < matrix[y].length; x++) {
@@ -26,11 +29,14 @@ createCanvas(matrix[0].length * side, matrix.length * side);
                 else if (matrix[y][x] == 5) {
                     fill(148, 12, 114);
                 }
+
+                rect(x * side/matrix.length, y * side/matrix.length, side/matrix.length, side/matrix.length); 
             }}}
-                rect(x * side, y * side, side, side); 
+
+            var socket = io();
 
 
-                socket.on('myMatrix', handlematrix);
-                function handlematrix(info){
-                    
-                }
+     
+            
+            
+            

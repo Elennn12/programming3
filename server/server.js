@@ -15,14 +15,14 @@ console.log("Example is running on port 3000");
 });
 ////my code
 
-let Grass = require("./grass.js")
-let GrassEater = require("./grassEater.js")
-let Gishatich = require ("./gishatich.js")
-let Terrorist = require ("./terrorist.js")
-let Hunter = require ("./hunter.js")
+ Grass = require("./grass.js")
+ GrassEater = require("./grassEater.js")
+ Gishatich = require ("./gishatich.js")
+ Terrorist = require ("./terrorist.js")
+ Hunter = require ("./hunter.js")
 
 
-var matrix = [
+ matrix = [
     [0, 1, 4, 0, 2, 0, 0, 0, 2, 3, 2, 0, 0, 0, 2, 0, 4, 0, 0, 2, 0, 0, 4, 0, 0, 2, 0, 0, 2, 1, 2, 0, 3, 0, 0, 0, 2, 0, 0, 2],
     [0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
     [2, 1, 0, 0, 0, 1, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0, 0],
@@ -46,13 +46,13 @@ var matrix = [
 ];
 
 
-var side = 10;
 
-let grassArr = []
-let grassEaterArr = []
-let GishatichArr = []
-let hunterArr = []
-let terroristArr =[]
+
+ grassArr = []
+ grassEaterArr = []
+ GishatichArr = []
+ hunterArr = []
+ terroristArr =[]
 function  create (){
 for (let y = 0; y < matrix.length; y++) {
     for (let x = 0; x < matrix[y].length; x++) {
@@ -84,45 +84,35 @@ for (let y = 0; y < matrix.length; y++) {
 
 }
 
-
+create()
 
 function run ()
     {
+        
+
         for (var i in grassArr) {
             grassArr[i].mul();
         }
     
-        for (var i in grassEaterArr) {
-            grassEaterArr[i].eat();
-        }
-        for (var i in GishatichArr) {
-            GishatichArr[i].eat();
-        }
-        for (var i in hunterArr) {
-            hunterArr[i].eat();
-        }
-        for (var i in terroristArr) {
-            terroristArr[i].eat();
-        }
-    }
-
-
-    run();
-
-    io.on('connection', function (socket) {
-
-        // for(var i in matrix) {
-        
-        socket.emit("myMatrix", matrix[i]);
-        
+        // for (var i in grassEaterArr) {
+        //     grassEaterArr[i].eat();
+        // }
+        // for (var i in GishatichArr) {
+        //     GishatichArr[i].eat();
+        // }
+        // for (var i in hunterArr) {
+        //     hunterArr[i].eat();
+        // }
+        // for (var i in terroristArr) {
+        //     terroristArr[i].eat();
         // }
         
-        // socket.on("send message", function (data) {
-        
-        // messages.push(data);
-        
-        // io.sockets.emit("display message", data);
-        
+        io.sockets.emit("matrix", matrix);
+
+    }
+
+   setInterval(run, 1000);
+
+    io.on('connection', function (socket) {
+        socket.emit("matrix", matrix);
         });
-        
-        // });

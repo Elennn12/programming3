@@ -1,36 +1,38 @@
 let LivingCreature = require ("./livingcreature.js")
+let random = require("./random");
 module.exports = class Hunter extends LivingCreature {
 
-    // constructor(x, y, index) {
-    //     this.x = x;
-    //     this.y = y;
-    //     this.index = index;
-    //     this.energy = 15;
-    //     this.directions = [
-    //         [this.x - 1, this.y - 1],
-    //         [this.x, this.y - 1],
-    //         [this.x + 1, this.y - 1],
-    //         [this.x - 1, this.y],
-    //         [this.x + 1, this.y],
-    //         [this.x - 1, this.y + 1],
-    //         [this.x, this.y + 1],
-    //         [this.x + 1, this.y + 1]
-    //     ];
+    constructor(x, y, index) {
+        super(x,y, index)
+        // this.x = x;
+        // this.y = y;
+        // this.index = index;
+        this.energy = 15;
+        // this.directions = [
+        //     [this.x - 1, this.y - 1],
+        //     [this.x, this.y - 1],
+        //     [this.x + 1, this.y - 1],
+        //     [this.x - 1, this.y],
+        //     [this.x + 1, this.y],
+        //     [this.x - 1, this.y + 1],
+        //     [this.x, this.y + 1],
+        //     [this.x + 1, this.y + 1]
+        // ];
 
 
-    // }
-    // getNewCoordinates() {
-    //     this.directions = [
-    //         [this.x - 1, this.y - 1],
-    //         [this.x, this.y - 1],
-    //         [this.x + 1, this.y - 1],
-    //         [this.x - 1, this.y],
-    //         [this.x + 1, this.y],
-    //         [this.x - 1, this.y + 1],
-    //         [this.x, this.y + 1],
-    //         [this.x + 1, this.y + 1]
-    //     ];
-    // }
+    }
+    getNewCoordinates() {
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+    }
 
     chooseCell(ch){
         this.getNewCoordinates();
@@ -121,3 +123,4 @@ module.exports = class Hunter extends LivingCreature {
         }
     }
 }
+

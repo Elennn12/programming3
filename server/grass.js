@@ -51,7 +51,7 @@
 
 let LivingCreature = require ("./livingcreature.js")
 
-
+let random = require("./random");
 module.exports= class Grass extends LivingCreature {
 
     mul() {
