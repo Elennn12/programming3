@@ -1,13 +1,13 @@
 var socket = io()
 socket.on("matrix", handlematrix)
-var side = 400
+var side = 800
 function setup() {
-    
+    frameRate(30)
     createCanvas(side,side);
     background('#acacac');}
 
     function handlematrix(matrix) {
-
+        // background('#acacac');
         for (var y = 0; y < matrix.length; y++) {
             for (var x = 0; x < matrix[y].length; x++) {
     
@@ -33,7 +33,7 @@ function setup() {
                 rect(x * side/matrix.length, y * side/matrix.length, side/matrix.length, side/matrix.length); 
             }}}
 
-            var socket = io();
+            
 
 
      

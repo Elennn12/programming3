@@ -1,11 +1,16 @@
 let LivingCreature = require ("./livingcreature.js")
 module.exports = class Gishatich extends LivingCreature{
 
-    // constructor(x, y, index) {
+    constructor(x, y, index) {
+       super(x, y, index)
+      this.energy = 15;
+      
+       
+       
     //     this.x = x;
     //     this.y = y;
     //     this.index = index;
-    //     this.energy = 15;
+    
     //     this.directions = [
     //         [this.x - 1, this.y - 1],
     //         [this.x, this.y - 1],
@@ -18,7 +23,7 @@ module.exports = class Gishatich extends LivingCreature{
     //     ];
 
 
-    // }
+    }
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],

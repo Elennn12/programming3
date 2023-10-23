@@ -94,18 +94,18 @@ function run ()
             grassArr[i].mul();
         }
     
-        // for (var i in grassEaterArr) {
-        //     grassEaterArr[i].eat();
-        // }
-        // for (var i in GishatichArr) {
-        //     GishatichArr[i].eat();
-        // }
-        // for (var i in hunterArr) {
-        //     hunterArr[i].eat();
-        // }
-        // for (var i in terroristArr) {
-        //     terroristArr[i].eat();
-        // }
+        for (var i in grassEaterArr) {
+            grassEaterArr[i].eat();
+        }
+        for (var i in GishatichArr) {
+            GishatichArr[i].eat();
+        }
+        for (var i in hunterArr) {
+            hunterArr[i].eat();
+        }
+        for (var i in terroristArr) {
+            terroristArr[i].eat();
+        }
         
         io.sockets.emit("matrix", matrix);
 
