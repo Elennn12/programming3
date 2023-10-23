@@ -1,3 +1,5 @@
+
+
 var socket = io()
 socket.on("matrix", handlematrix)
 var side = 800
@@ -33,10 +35,28 @@ function setup() {
                 rect(x * side/matrix.length, y * side/matrix.length, side/matrix.length, side/matrix.length); 
             }}}
 
-            
+            // get.elem
+  
 
 
-     
-            
-            
+// socket.on("statistics", updatestatistics)
+
+//      function updatestatistics (statistics){
+//          var grasscount = statistics.grass
+//          var grassEatercount = statistics.grasseater
+//          var gishatichcount = statistics.gishatichcount
+
+//      }
+    // }
+         
+    // socket.on("statistics", myJSON)
+    function clickbuttun() {
+        socket.emit("m" , b)
+    //   console.log("wddwu")
+    }
+    
+    var p = document.getElementById("button");
+
+
+    p.addEventListener("click",clickbuttun);
             

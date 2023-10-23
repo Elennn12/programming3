@@ -68,7 +68,7 @@ module.exports = class Hunter extends LivingCreature {
 
         this.energy--;
 
-        console.log(this.energy);
+        // console.log(this.energy);
         let emptyCells = this.chooseCell(0)
         let newCell = random(emptyCells)
         if (newCell) {
@@ -112,7 +112,7 @@ module.exports = class Hunter extends LivingCreature {
         }
     }
     die() {
-        console.log("merav");
+        // console.log("merav");
 
         matrix[this.y][this.x] = 0
         for (var i in hunterArr) {
