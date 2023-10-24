@@ -86,7 +86,7 @@ function create() {
 
 
 }
-// io.sockets.emit("statistics", statistics)
+
 create()
 
 function run() {
@@ -135,6 +135,7 @@ setInterval(run, 1000);
 io.on('connection', function (socket) {
     socket.emit("matrix", matrix);
     socket.on ("m", b)
+    //socket.on ("season",  )
 
 });
 
@@ -142,15 +143,12 @@ io.on('connection', function (socket) {
 
 function b(){
     let info = fs.readFileSync("statistics.json").toString()
-    const obj = JSON.parse({
-        grass: grassArr.length, 
-        grasseater: grassEaterArr.length, 
-        gishatich: GishatichArr.length,
-        terrorist: terroristArr.length,
-        hunter: hunterArr.length
-    });
+    io.sockets.emit("info", info)
 
 }
 
 
 //io.sockets.emit("m", info);
+
+
+    
