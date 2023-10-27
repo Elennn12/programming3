@@ -123,9 +123,10 @@ function run() {
 
 
 
+
 }
 
-setInterval(run, 1000);
+
 
 
 
@@ -134,6 +135,7 @@ io.on('connection', function (socket) {
     socket.on ("m", b)
     socket.on ("pause", pause)
     socket.on ("play", play)
+
     // socket.on ("season", summer)
     //socket.on ("season",  )
 
@@ -153,16 +155,28 @@ function b(){
 //iradardzutyunner (play/pause)
 
 playArgument = false;
+
 function pause() {
     playArgument = false;
+    clearInterval(id)
+    count=  0
 }
 
 
+let count = 0;
+var id;
 function play() {
-   playArgument = true;
+    if(count ==0){
+
+        id = setInterval(run, 1000);
+        //clearinterval(id)
+        // count=0
+        count++
+        playArgument = true;
+    }
 }
 
- let gamee = function game() {
+function game() {
     if (playArgument) {  
         for (let i = 0; i < grassArr.length; i++) {
             grassArr[i].mul();
@@ -181,5 +195,5 @@ function play() {
         }
     }
 }
-setInterval(gamee, 1000);
-io.sockets.emit ("game",gamee )
+// setInterval(game, 1000);
+io.sockets.emit ("game","dfghjk" )

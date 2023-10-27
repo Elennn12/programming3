@@ -179,6 +179,7 @@ function draww(matrix) {
 
 var play = document.getElementById("play");
 play.addEventListener("click", function (){
+    // console.log("play inside")
     socket.emit("play");
     
 });
@@ -190,4 +191,11 @@ pause.addEventListener("click", function (){
 });
 
 
-  socket.on ("game", gamee)
+  socket.on ("game", anun)
+
+
+  function anun(){
+if (playArgument === true ) {
+    
+}
+  }

@@ -1,23 +1,23 @@
-let LivingCreature = require ("./livingcreature.js")
+let LivingCreature = require("./livingcreature.js")
 let random = require("./random");
-module.exports =class GrassEater extends LivingCreature {
+module.exports = class GrassEater extends LivingCreature {
 
     constructor(x, y, index) {
-        super(x,y, index)
-    //     this.x = x;
-    //     this.y = y;
-    //     this.index = index;
-        this.energy = 30;
-    //     this.directions = [
-    //         [this.x - 1, this.y - 1],
-    //         [this.x, this.y - 1],
-    //         [this.x + 1, this.y - 1],
-    //         [this.x - 1, this.y],
-    //         [this.x + 1, this.y],
-    //         [this.x - 1, this.y + 1],
-    //         [this.x, this.y + 1],
-    //         [this.x + 1, this.y + 1]
-    //     ];
+        super(x, y, index)
+        //     this.x = x;
+        //     this.y = y;
+        //     this.index = index;
+        this.energy = 15;
+        //     this.directions = [
+        //         [this.x - 1, this.y - 1],
+        //         [this.x, this.y - 1],
+        //         [this.x + 1, this.y - 1],
+        //         [this.x - 1, this.y],
+        //         [this.x + 1, this.y],
+        //         [this.x - 1, this.y + 1],
+        //         [this.x, this.y + 1],
+        //         [this.x + 1, this.y + 1]
+        //     ];
 
 
     }
@@ -50,18 +50,20 @@ module.exports =class GrassEater extends LivingCreature {
 
     // }
 
-    chooseCell(ch){
+    chooseCell(ch) {
         this.getNewCoordinates();
         return super.chooseCell(ch);
     }
 
     mul() {
-        var newCell = random(this.chooseCell(0));
-        if (newCell) {
-            var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
-            grassEaterArr.push(newGrassEater);
-            matrix[newCell[1]][newCell[0]] = 2;
-            this.energy = 30
+        if (this.energy >= 30) {
+            var newCell = random(this.chooseCell(0));
+            if (newCell) {
+                var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
+                grassEaterArr.push(newGrassEater);
+                matrix[newCell[1]][newCell[0]] = 2;
+                this.energy++;
+            }
         }
     }
     move() {

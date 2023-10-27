@@ -56,12 +56,14 @@ module.exports = class Hunter extends LivingCreature {
     // }
 
     mul() {
-        var newCell = random(this.chooseCell(0));
-        if (newCell) {
-            var newHunter = new Hunter(newCell[0], newCell[1], this.index);
-            hunterArr.push(newHunter);
-            matrix[newCell[1]][newCell[0]] = 4;
-            this.energy = 30
+        if(this.energy >= 15){
+            var newCell = random(this.chooseCell(0));
+            if (newCell) {
+                var newHunter = new Hunter(newCell[0], newCell[1], this.index);
+                hunterArr.push(newHunter);
+                matrix[newCell[1]][newCell[0]] = 4;
+                this.energy++
+            }
         }
     }
     move() {
