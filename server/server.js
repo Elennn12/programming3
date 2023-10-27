@@ -121,10 +121,7 @@ function run() {
     fs.writeFileSync("statistics.json", myJSON );   
 
 
-// console.log(info)
-// io.on('connection', function (socket) {
-//     // socket.emit("statistics", myJSON);
-// });
+
 
 }
 
@@ -135,6 +132,9 @@ setInterval(run, 1000);
 io.on('connection', function (socket) {
     socket.emit("matrix", matrix);
     socket.on ("m", b)
+    socket.on ("pause", pause)
+    socket.on ("play", play)
+    // socket.on ("season", summer)
     //socket.on ("season",  )
 
 });
@@ -148,7 +148,38 @@ function b(){
 }
 
 
-//io.sockets.emit("m", info);
 
 
-    
+//iradardzutyunner (play/pause)
+
+playArgument = false;
+function pause() {
+    playArgument = false;
+}
+
+
+function play() {
+   playArgument = true;
+}
+
+ let gamee = function game() {
+    if (playArgument) {  
+        for (let i = 0; i < grassArr.length; i++) {
+            grassArr[i].mul();
+        }
+        for (let i = 0; i < grassEaterArr.length; i++) {
+            grassEaterArr[i].eat();
+        }
+        for (let i = 0; i < GishatichArr.length; i++) {
+            GishatichArr[i].eat();
+        }
+        for (let i = 0; i < hunterArr.length; i++) {
+            hunterArr[i].eat();
+        }
+        for (let i = 0; i < terroristArr.length; i++) {
+            terroristArr[i].eat();
+        }
+    }
+}
+setInterval(gamee, 1000);
+io.sockets.emit ("game",gamee )

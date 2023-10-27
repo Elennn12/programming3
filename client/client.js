@@ -2,7 +2,7 @@
 
 var socket = io()
 socket.on("matrix", handlematrix)
-var side = 800
+var side = 300
 function setup() {
 
     createCanvas(side, side);
@@ -11,6 +11,7 @@ function setup() {
 
 function handlematrix(matrix) {
     // background('#acacac');
+    
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -34,6 +35,8 @@ function handlematrix(matrix) {
             }
 
             rect(x * side / matrix.length, y * side / matrix.length, side / matrix.length, side / matrix.length);
+             
+       
         }
     }
 }
@@ -49,8 +52,9 @@ function handlematrix(matrix) {
 
 function clickbuttun() {
     socket.emit("m", "get")
-   
+
 }
+
 
 var p = document.getElementById("button");
 
@@ -59,6 +63,8 @@ p.addEventListener("click", clickbuttun);
 
 
 socket.on("info", getS)
+//socket.on("summer", summergo)
+
 
 function getS(info) {
     info = JSON.parse(info)
@@ -78,31 +84,110 @@ r = document.getElementById("r");
 d = document.getElementById("d");
 w = document.getElementById("w");
 
+
+
 //season
 
+let springArgument = false
+ var spring = document.getElementById("spring");
+ spring.addEventListener("click", function() {
+    springArgument = true;
+    summerArgument = false;
+    fallArgument = false;
+    winterArgument = false;
+});
 
-var season1 = document.getElementById("button1");
 
+let summerArgument = true;
+let summer = document.getElementById('summer');
+summer.addEventListener('click', function () {
+    springArgument = false;
+    summerArgument = true;
+    fallArgument = false;
+    winterArgument = false;
+})
 
-season1.addEventListener("clickk", clickbuttun1);
+let fallArgument = false;
+let fall = document.getElementById('fall');
+fall.addEventListener('click', function () {
+    springArgument = false;
+    summerArgument = false;
+    fallArgument = true;
+    winterArgument = false;
+});
 
-function clickbuttun1() {
-   // socket.emit("season", "get")
+let winterArgument = false;
+let winter = document.getElementById('winter');
+winter.addEventListener('click', function () {
+    springArgument = false;
+    summerArgument = false;
+    fallArgument = false;
+    winterArgument = true;
+});
+
+function draww(matrix) {
     
-}
-var season2 = document.getElementById("button2");
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] == 0) {
+                fill(115, 67, 3);
+            }
+            // grass
+            else if (matrix[i][j] == 1) {
+                if (springArgument == true) {
+                    fill(57, 189, 0)
+                } else if (summerArgument == true) {
+                    fill(29, 105, 13);
+                } else if (autumnArgument == true) {
+                    fill(145, 155, 51);
+                } else if (winterArgument == true) {
+                    fill(255, 255, 255);
+                }
+            }
+            //
+
+            else if (matrix[i][j] == 2) {
+                fill(120, 18, 23);
+            }
+            else if (matrix[i][j] == 3) {
+                fill(250, 163, 12);
+            }
+            else if (matrix[i][j] == 4) {
+                fill(13, 61, 94);
+            }
+            else if (matrix[i][j] == 5) {
+                fill(148, 12, 114);
+            }}
+            rect(i * side / matrix.length, j * side / matrix.length, side / matrix.length, side / matrix.length);
+        }}
+
+// s = document.getElementById("s");
+// a = document.getElementById("a");
+// i = document.getElementById("i");
+// n = document.getElementById("n");
+
+// function summergo(summer){
+//  if (summer = true ) {
+//     grass.mul()
+//  }  
+// }
 
 
-season2.addEventListener("clickkk", clickbuttun2);
 
-function clickbuttun2() {
-   // socket.emit("season", "get")
+
+// iradardzutyun (play/pause)
+
+var play = document.getElementById("play");
+play.addEventListener("click", function (){
+    socket.emit("play");
     
-}
+});
 
-s = document.getElementById("s");
-a = document.getElementById("a");
-i = document.getElementById("i");
-n = document.getElementById("n");
+var pause = document.getElementById("pause");
+pause.addEventListener("click", function (){
+    socket.emit("pause");
+    
+});
 
 
+  socket.on ("game", gamee)

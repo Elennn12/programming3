@@ -6,10 +6,8 @@ module.exports = class LivingCreature {
         this.x = x;
 
         this.y = y;
-
-        this.multiply = 0;
-
         this.index = index;
+        this.multiply = 0;
 
         this.directions = [
 
