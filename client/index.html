@@ -21,17 +21,20 @@
  
 
 
-  <p id = "exanak"> Hima amar e </p>
+  
   <div>  
    <button type="button" id = "button">Get statistics</button>
    <button type="button" id = "play"> Play </button>
    <button type="button" id = "pause"> Pause </button>
-   <button type="button" id = "spring">Spring</button>
-  <button type="button" id = "summer">Summer</button>
-  <button type="button" id = "fall">Fall</button>
-  <button type="button" id = "winter">Winter</button>  
+   <button type="button" id = "kill"> Kill Everyone </button>
+   <button onclick = "winter()" id = "winter">Winter</button>
+        <button onclick = "spring()" id = "spring">Spring</button>
+        <button onclick = "summer()" id = "summer">Summer</button>
+        <button onclick = "autumn()" id = "autumn">Autumn</button> 
   </div>
    <br>
+   <p id = "weather"></p>
+   
    <script src="client.js"></script> 
   
 </head>
@@ -108,13 +111,20 @@ h1 {
  color:#734303; 
  text-align: center;
  font-size: 60px;
- text-shadow: 2px 2px;
+ text-shadow:2px 2px 5px yellow;
 }
 
 h2 {
   color:#734303; 
-
+  text-shadow:2px 2px 5px yellow;
  font-size: 37px; 
+}
+
+#weather {
+color:#734303;
+  text-shadow:2px 2px 5px yellow;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
 }
 </style>
 <body>

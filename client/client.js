@@ -1,6 +1,9 @@
 var socket = io()
 socket.on("matrix", handlematrix)
 var side = 700
+grassColor = "green"
+grassEaterColor = "yellow"
+gishatichColor = "orange"
 function setup() {
 
     createCanvas(side, side);
@@ -14,16 +17,16 @@ function handlematrix(matrix) {
         for (var x = 0; x < matrix[y].length; x++) {
 
             if (matrix[y][x] == 1) {
-                fill(29, 105, 13);
+                fill(grassColor)
             }
             else if (matrix[y][x] == 0) {
                 fill(115, 67, 3);
             }
             else if (matrix[y][x] == 2) {
-                fill(120, 18, 23);
+                fill(grassEaterColor);
             }
             else if (matrix[y][x] == 3) {
-                fill(250, 163, 12);
+                fill(gishatichColor);
             }
             else if (matrix[y][x] == 4) {
                 fill(13, 61, 94);
@@ -61,8 +64,26 @@ p.addEventListener("click", clickbuttun);
 
 
 socket.on("info", getS)
-//socket.on("summer", summergo)
+socket.on("ww", handleW)
+socket.on("")
 
+function handleW(ww){
+    if(ww =="summer"){
+        weather.innerText  = "The weather is Summer"
+    }
+    else if ( ww == "autumn"){
+        weather.innerText = "The weather is Autumn"
+    }
+    else if (ww == "winter"){
+        weather.innerText = "The weather is Winter"
+    }
+    else if (ww == "spring"){
+        weather.innerText = "The weather is Spring"
+    }
+    else{
+        ' '
+    }
+}
 
 function getS(info) {
     info = JSON.parse(info)
@@ -84,90 +105,45 @@ w = document.getElementById("w");
 
 
 
+
 //season
 
-// let springArgument = false
-// var spring = document.getElementById("spring");
-// spring.addEventListener("click", function () {
-//     springArgument = true;
-//     summerArgument = false;
-//     fallArgument = false;
-//     winterArgument = false;
-// });
+weather = document.getElementById("weather");
+weather.innerText  = "The weather is Spring"
 
 
-// let summerArgument = true;
-// let summer = document.getElementById("summer");
-// summer.addEventListener('click', function () {
-//     springArgument = false;
-//     summerArgument = true;
-//     fallArgument = false;
-//     winterArgument = false;
-// })
+function winter(){
+    console.log("dzmer")
+    grassColor = "white"
+    grassEaterColor = "#ffffaa"
+    gishatichColor = "#ffdd99"
 
-// let fallArgument = false;
-// let fall = document.getElementById('fall');
-// fall.addEventListener('click', function () {
-//     springArgument = false;
-//     summerArgument = false;
-//     fallArgument = true;
-//     winterArgument = false;
-// });
+    socket.emit("winter", "winter")
+}
+function spring(){
+    console.log("garun")
+    grassColor = "green"
+    grassEaterColor = "yellow"
+    gishatichColor = "orange"
 
-// let winterArgument = false;
-// let winter = document.getElementById('winter');
-// winter.addEventListener('click', function () {
-//     springArgument = false;
-//     summerArgument = false;
-//     fallArgument = false;
-//     winterArgument = true;
-// });
+    socket.emit("spring", "spring")
+}
+function summer(){
+    console.log("amar")
+    grassColor = "green"
+    grassEaterColor = "yellow"
+    gishatichColor = "orange"
 
-// function draww(matrix) {
-    
-//     for (let i = 0; i < matrix.length; i++) {
-//         for (let j = 0; j < matrix[i].length; j++) {
-//             if (matrix[i][j] === 0) {
-//                 fill("gray");
-//             }
-//             // GRASS
-//             else if (matrix[i][j] === 1) {
-//                 if (springArgument === true) {
-//                     fill('pink')
-//                 } else if (summerArgument === true) {
-//                     fill('green');
-//                 } else if (fallArgument === true) {
-//                     fill('#808000');
-//                 } else if (winterArgument === true) {
-//                     fill('white');
-//                 }
-//             }
-//             //
+    socket.emit("summer", "summer")
+}
+function autumn(){
+    console.log("ashun")
+    grassColor = "#888822"
+    grassEaterColor = "yellow"
+    gishatichColor = "orange"
 
-//             else if (matrix[i][j] === 2) {
-//                 fill("yellow");
-//             }
-//             else if (matrix[i][j] === 3) {
-//                 fill("red");
-//             }
-            
-//             else if (matrix[i][j] === 4) {
-                
-//                     fill('#7DF9FF')
-//             }
-              
-            
-//             // 
-
-//             else if (matrix[i][j] === 5) {
-//                 fill("orange");
-//             }
-//             rect(i * side, j * side, side, side);
-        
-    
-//             }}}
-// //socket.on("matrix", draww);
-
+    socket.emit("autumn", "autumn")
+}
 
 // iradardzutyun (play/pause)
 
@@ -188,3 +164,13 @@ pause.addEventListener("click", function () {
   //socket.on ("game", anun)
 
 
+//kill
+var kill = document.getElementById("kill");
+
+
+kill.addEventListener("click", clickbuttunn);
+
+function clickbuttunn() {
+    socket.emit("kill", "hello")
+
+}

@@ -47,7 +47,7 @@ matrix = [
 
 
 
-
+frameRate = 2000
 grassArr = []
 grassEaterArr = []
 GishatichArr = []
@@ -135,6 +135,12 @@ io.on('connection', function (socket) {
     socket.on ("m", b)
     socket.on ("pause", pause)
     socket.on ("play", play)
+    socket.on ("kill", killeveryone)
+
+    socket.on("winter", changeRate)
+socket.on("spring", changeRate)
+socket.on("summer", changeRate)
+socket.on("autumn", changeRate)
 
     // socket.on ("season", summer)
     //socket.on ("season",  )
@@ -162,7 +168,7 @@ function pause() {
 }
 
 
-let count = 0;
+let count = 1;
 var id;
 function play() {
     if(count ==0){
@@ -176,3 +182,39 @@ function play() {
 }
 
 
+//season
+
+var id
+id = setInterval(run, frameRate)
+
+function changeRate(ww){
+    if(ww=="spring"){
+        frameRate = 600
+    }
+    
+    else if(ww =="winter"){
+        frameRate = 2000
+    }
+    else if(ww =="autumn"){
+        frameRate = 1500
+    }
+    else if(ww =="summer"){
+        frameRate = 1000
+    }
+    console.log(frameRate)
+    clearInterval(id)
+    id = setInterval(run, frameRate)
+    io.sockets.emit("ww",ww )
+}
+
+
+//clear
+
+function killeveryone(){
+    garssArr = []
+    // matrixi vrayov fra u inchqan tver ka dardznel 0
+    grassEaterArr = 0
+    GishatichArr=0
+    hunterArr =0
+    terroristArr =0
+}
