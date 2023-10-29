@@ -1,8 +1,6 @@
-
-
 var socket = io()
 socket.on("matrix", handlematrix)
-var side = 300
+var side = 700
 function setup() {
 
     createCanvas(side, side);
@@ -11,7 +9,7 @@ function setup() {
 
 function handlematrix(matrix) {
     // background('#acacac');
-    
+
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -35,8 +33,8 @@ function handlematrix(matrix) {
             }
 
             rect(x * side / matrix.length, y * side / matrix.length, side / matrix.length, side / matrix.length);
-             
-       
+
+
         }
     }
 }
@@ -88,114 +86,105 @@ w = document.getElementById("w");
 
 //season
 
-let springArgument = false
- var spring = document.getElementById("spring");
- spring.addEventListener("click", function() {
-    springArgument = true;
-    summerArgument = false;
-    fallArgument = false;
-    winterArgument = false;
-});
+// let springArgument = false
+// var spring = document.getElementById("spring");
+// spring.addEventListener("click", function () {
+//     springArgument = true;
+//     summerArgument = false;
+//     fallArgument = false;
+//     winterArgument = false;
+// });
 
 
-let summerArgument = true;
-let summer = document.getElementById('summer');
-summer.addEventListener('click', function () {
-    springArgument = false;
-    summerArgument = true;
-    fallArgument = false;
-    winterArgument = false;
-})
+// let summerArgument = true;
+// let summer = document.getElementById("summer");
+// summer.addEventListener('click', function () {
+//     springArgument = false;
+//     summerArgument = true;
+//     fallArgument = false;
+//     winterArgument = false;
+// })
 
-let fallArgument = false;
-let fall = document.getElementById('fall');
-fall.addEventListener('click', function () {
-    springArgument = false;
-    summerArgument = false;
-    fallArgument = true;
-    winterArgument = false;
-});
+// let fallArgument = false;
+// let fall = document.getElementById('fall');
+// fall.addEventListener('click', function () {
+//     springArgument = false;
+//     summerArgument = false;
+//     fallArgument = true;
+//     winterArgument = false;
+// });
 
-let winterArgument = false;
-let winter = document.getElementById('winter');
-winter.addEventListener('click', function () {
-    springArgument = false;
-    summerArgument = false;
-    fallArgument = false;
-    winterArgument = true;
-});
+// let winterArgument = false;
+// let winter = document.getElementById('winter');
+// winter.addEventListener('click', function () {
+//     springArgument = false;
+//     summerArgument = false;
+//     fallArgument = false;
+//     winterArgument = true;
+// });
 
-function draww(matrix) {
+// function draww(matrix) {
     
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[i].length; j++) {
-            if (matrix[i][j] == 0) {
-                fill(115, 67, 3);
-            }
-            // grass
-            else if (matrix[i][j] == 1) {
-                if (springArgument == true) {
-                    fill(57, 189, 0)
-                } else if (summerArgument == true) {
-                    fill(29, 105, 13);
-                } else if (autumnArgument == true) {
-                    fill(145, 155, 51);
-                } else if (winterArgument == true) {
-                    fill(255, 255, 255);
-                }
-            }
-            //
+//     for (let i = 0; i < matrix.length; i++) {
+//         for (let j = 0; j < matrix[i].length; j++) {
+//             if (matrix[i][j] === 0) {
+//                 fill("gray");
+//             }
+//             // GRASS
+//             else if (matrix[i][j] === 1) {
+//                 if (springArgument === true) {
+//                     fill('pink')
+//                 } else if (summerArgument === true) {
+//                     fill('green');
+//                 } else if (fallArgument === true) {
+//                     fill('#808000');
+//                 } else if (winterArgument === true) {
+//                     fill('white');
+//                 }
+//             }
+//             //
 
-            else if (matrix[i][j] == 2) {
-                fill(120, 18, 23);
-            }
-            else if (matrix[i][j] == 3) {
-                fill(250, 163, 12);
-            }
-            else if (matrix[i][j] == 4) {
-                fill(13, 61, 94);
-            }
-            else if (matrix[i][j] == 5) {
-                fill(148, 12, 114);
-            }}
-            rect(i * side / matrix.length, j * side / matrix.length, side / matrix.length, side / matrix.length);
-        }}
+//             else if (matrix[i][j] === 2) {
+//                 fill("yellow");
+//             }
+//             else if (matrix[i][j] === 3) {
+//                 fill("red");
+//             }
+            
+//             else if (matrix[i][j] === 4) {
+                
+//                     fill('#7DF9FF')
+//             }
+              
+            
+//             // 
 
-// s = document.getElementById("s");
-// a = document.getElementById("a");
-// i = document.getElementById("i");
-// n = document.getElementById("n");
-
-// function summergo(summer){
-//  if (summer = true ) {
-//     grass.mul()
-//  }  
-// }
-
-
+//             else if (matrix[i][j] === 5) {
+//                 fill("orange");
+//             }
+//             rect(i * side, j * side, side, side);
+        
+    
+//             }}}
+// //socket.on("matrix", draww);
 
 
 // iradardzutyun (play/pause)
 
 var play = document.getElementById("play");
-play.addEventListener("click", function (){
+play.addEventListener("click", function () {
     // console.log("play inside")
     socket.emit("play");
-    
+
 });
 
 var pause = document.getElementById("pause");
-pause.addEventListener("click", function (){
+pause.addEventListener("click", function () {
     socket.emit("pause");
-    
+
 });
 
 
-  socket.on ("game", anun)
+  //socket.on ("game", anun)
 
 
-  function anun(){
-if (playArgument === true ) {
-    
-}
-  }

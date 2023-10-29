@@ -108,7 +108,7 @@ function run() {
     for (var i in terroristArr) {
         terroristArr[i].eat();
     }
-
+//statistics
     io.sockets.emit("matrix", matrix);
     var obj = {
         grass: grassArr.length, 
@@ -142,13 +142,12 @@ io.on('connection', function (socket) {
 });
 
 
-
+//statistics
 function b(){
     let info = fs.readFileSync("statistics.json").toString()
     io.sockets.emit("info", info)
 
 }
-
 
 
 
@@ -159,7 +158,7 @@ playArgument = false;
 function pause() {
     playArgument = false;
     clearInterval(id)
-    count=  0
+    count=0
 }
 
 
@@ -176,24 +175,4 @@ function play() {
     }
 }
 
-function game() {
-    if (playArgument) {  
-        for (let i = 0; i < grassArr.length; i++) {
-            grassArr[i].mul();
-        }
-        for (let i = 0; i < grassEaterArr.length; i++) {
-            grassEaterArr[i].eat();
-        }
-        for (let i = 0; i < GishatichArr.length; i++) {
-            GishatichArr[i].eat();
-        }
-        for (let i = 0; i < hunterArr.length; i++) {
-            hunterArr[i].eat();
-        }
-        for (let i = 0; i < terroristArr.length; i++) {
-            terroristArr[i].eat();
-        }
-    }
-}
-// setInterval(game, 1000);
-io.sockets.emit ("game","dfghjk" )
+

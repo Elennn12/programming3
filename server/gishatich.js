@@ -1,26 +1,27 @@
-let LivingCreature = require ("./livingcreature.js")
-module.exports = class Gishatich extends LivingCreature{
+let LivingCreature = require("./livingcreature.js")
+let random = require("./random");
+module.exports = class Gishatich extends LivingCreature {
 
     constructor(x, y, index) {
-       super(x, y, index)
-      this.energy = 15;
-      
-       
-       
-    //     this.x = x;
-    //     this.y = y;
-    //     this.index = index;
-    
-    //     this.directions = [
-    //         [this.x - 1, this.y - 1],
-    //         [this.x, this.y - 1],
-    //         [this.x + 1, this.y - 1],
-    //         [this.x - 1, this.y],
-    //         [this.x + 1, this.y],
-    //         [this.x - 1, this.y + 1],
-    //         [this.x, this.y + 1],
-    //         [this.x + 1, this.y + 1]
-    //     ];
+        super(x, y, index)
+        this.energy = 15;
+
+
+
+        //     this.x = x;
+        //     this.y = y;
+        //     this.index = index;
+
+        //     this.directions = [
+        //         [this.x - 1, this.y - 1],
+        //         [this.x, this.y - 1],
+        //         [this.x + 1, this.y - 1],
+        //         [this.x - 1, this.y],
+        //         [this.x + 1, this.y],
+        //         [this.x - 1, this.y + 1],
+        //         [this.x, this.y + 1],
+        //         [this.x + 1, this.y + 1]
+        //     ];
 
 
     }
@@ -38,7 +39,7 @@ module.exports = class Gishatich extends LivingCreature{
     }
 
 
-    chooseCell(ch){
+    chooseCell(ch) {
         this.getNewCoordinates();
         return super.chooseCell(ch);
     }
@@ -61,13 +62,16 @@ module.exports = class Gishatich extends LivingCreature{
     // }
 
     mul() {
-        var newCell = random(this.chooseCell(0));
-        if (newCell) {
-            var newGishatich = new Gishatich(newCell[0], newCell[1], this.index);
-            GishatichArr.push(newGishatich);
-            matrix[newCell[1]][newCell[0]] = 3;
-            this.energy = 30
+        if (this.energy >= 8) {
+            var newCell = random(this.chooseCell(0));
+            if (newCell) {
+                var newGishatich = new Gishatich(newCell[0], newCell[1], this.index);
+                GishatichArr.push(newGishatich);
+                matrix[newCell[1]][newCell[0]] = 3;
+                this.energy++;
+            }
         }
+
     }
     move() {
 
@@ -108,7 +112,7 @@ module.exports = class Gishatich extends LivingCreature{
                     break;
                 }
             }
-            if (this.energy >= 5 ) {
+            if (this.energy >= 5) {
                 this.mul()
             }
         }
@@ -128,4 +132,3 @@ module.exports = class Gishatich extends LivingCreature{
         }
     }
 }
-let random = require("./random");

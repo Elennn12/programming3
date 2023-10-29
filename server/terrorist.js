@@ -56,14 +56,16 @@ module.exports = class Terrorist extends LivingCreature {
     }
     
     mul() {
-        let random = require("./random");
-        var newCell = random(this.chooseCell(0));
+        if (this.energy >= 10){
+           var newCell = random(this.chooseCell(0));
         if (newCell) {
             var newTerrorist = new Terrorist(newCell[0], newCell[1], this.index);
             terroristArr.push(newTerrorist);
             matrix[newCell[1]][newCell[0]] = 5;
-            this.energy = 15
+            this.energy++;
+        } 
         }
+        
     }
     move() {
 
@@ -88,7 +90,7 @@ module.exports = class Terrorist extends LivingCreature {
 
     eat() {
 
-        let foods = this.chooseCell(3 && 4)
+        let foods = this.chooseCell(4)
         let food = random(foods)
         if (food) {
             this.energy++
@@ -104,7 +106,7 @@ module.exports = class Terrorist extends LivingCreature {
                     break;
                 }
             }
-            if (this.energy >= 20) {
+            if (this.energy >= 8) {
                 this.mul()
             }
         }
