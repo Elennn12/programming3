@@ -1,9 +1,9 @@
 var socket = io()
 socket.on("matrix", handlematrix)
 var side = 700
-grassColor = "green"
-grassEaterColor = "yellow"
-gishatichColor = "orange"
+grassColor = "#1D690D"
+grassEaterColor = "#781217";
+gishatichColor = "#FAA30C";
 function setup() {
 
     createCanvas(side, side);
@@ -11,7 +11,7 @@ function setup() {
 }
 
 function handlematrix(matrix) {
-    // background('#acacac');
+   
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -58,14 +58,42 @@ function clickbuttun() {
 
 
 var p = document.getElementById("button");
-
-
 p.addEventListener("click", clickbuttun);
 
 
 socket.on("info", getS)
+
+
+function getS(info) {
+    info = JSON.parse(info)
+    console.log(info)
+    k.innerText = "grass " + info.grass
+    f.innerText = "grassEater " + info.grasseater
+    r.innerText = "gishatich " + info.gishatich
+    d.innerText = "terrorist " + info.terrorist
+    w.innerText = "hunter " + info.hunter
+
+}
+
+k = document.getElementById("k");
+f = document.getElementById("f");
+r = document.getElementById("r");
+d = document.getElementById("d");
+w = document.getElementById("w");
+
+
+
+
+
+//season
+
+weather = document.getElementById("weather");
+weather.innerText  = "The weather is Spring"
+
+
+
 socket.on("ww", handleW)
-socket.on("")
+
 
 function handleW(ww){
     if(ww =="summer"){
@@ -80,56 +108,31 @@ function handleW(ww){
     else if (ww == "spring"){
         weather.innerText = "The weather is Spring"
     }
-    else{
-        ' '
+   
+    else {
+        weather.innerText =' '
     }
 }
 
-function getS(info) {
-    info = JSON.parse(info)
-    console.log(info)
-    k.innerText = "grass " + info.grass
-    f.innerText = "grassEater " + info.grasseater
-    r.innerText = "gishatich " + info.gishatich
-    d.innerText = "terrorist " + info.terrorist
-    w.innerText = "hunter " + info.hunter
-
-}
-
-
-k = document.getElementById("k");
-f = document.getElementById("f");
-r = document.getElementById("r");
-d = document.getElementById("d");
-w = document.getElementById("w");
-
-
-
-
-//season
-
-weather = document.getElementById("weather");
-weather.innerText  = "The weather is Spring"
-
 
 function winter(){
-    console.log("dzmer")
+    
     grassColor = "white"
-    grassEaterColor = "#ffffaa"
-    gishatichColor = "#ffdd99"
+    grassEaterColor = "#F7ACAC"
+    gishatichColor = "#FED46E"
 
     socket.emit("winter", "winter")
 }
 function spring(){
-    console.log("garun")
-    grassColor = "green"
-    grassEaterColor = "yellow"
-    gishatichColor = "orange"
+    
+    grassColor = "#1D690D"
+    grassEaterColor = "#781217";
+    gishatichColor = "#FAA30C";
 
     socket.emit("spring", "spring")
 }
 function summer(){
-    console.log("amar")
+    
     grassColor = "green"
     grassEaterColor = "yellow"
     gishatichColor = "orange"
@@ -137,19 +140,21 @@ function summer(){
     socket.emit("summer", "summer")
 }
 function autumn(){
-    console.log("ashun")
+    
     grassColor = "#888822"
-    grassEaterColor = "yellow"
-    gishatichColor = "orange"
+    grassEaterColor = "red"
+    gishatichColor = "EDAF15"
 
     socket.emit("autumn", "autumn")
 }
+
+
+
 
 // iradardzutyun (play/pause)
 
 var play = document.getElementById("play");
 play.addEventListener("click", function () {
-    // console.log("play inside")
     socket.emit("play");
 
 });
@@ -161,16 +166,15 @@ pause.addEventListener("click", function () {
 });
 
 
-  //socket.on ("game", anun)
+ 
 
 
 //kill
 var kill = document.getElementById("kill");
-
-
 kill.addEventListener("click", clickbuttunn);
 
 function clickbuttunn() {
     socket.emit("kill", "hello")
 
 }
+

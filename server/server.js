@@ -1,16 +1,16 @@
 var express = require("express");
 var app = express();
-var fs = require ("fs")
+var fs = require("fs")
 app.use(express.static("../client"));
 
-var server = require('http').createServer(app); // add
-var io = require('socket.io')(server); // add
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
 app.get("/", function (req, res) {
     res.redirect("index.html");
 });
 
-server.listen(3000, function () { // add
+server.listen(3000, function () {
     console.log("Example is running on port 3000");
 });
 ////my code
@@ -47,7 +47,7 @@ matrix = [
 
 
 
-frameRate = 2000
+frameRate = 600
 grassArr = []
 grassEaterArr = []
 GishatichArr = []
@@ -67,17 +67,17 @@ function create() {
             else if (matrix[y][x] == 3) {
                 let gishatich = new Gishatich(x, y, 3)
                 GishatichArr.push(gishatich)
-                
+
             }
             else if (matrix[y][x] == 4) {
                 let hunter = new Hunter(x, y, 4)
                 hunterArr.push(hunter)
-                
+
             }
             else if (matrix[y][x] == 5) {
                 let terrorist = new Terrorist(x, y, 5)
                 terroristArr.push(terrorist)
-                
+
             }
 
         }
@@ -108,17 +108,17 @@ function run() {
     for (var i in terroristArr) {
         terroristArr[i].eat();
     }
-//statistics
+    //statistics
     io.sockets.emit("matrix", matrix);
     var obj = {
-        grass: grassArr.length, 
-        grasseater: grassEaterArr.length, 
+        grass: grassArr.length,
+        grasseater: grassEaterArr.length,
         gishatich: GishatichArr.length,
         terrorist: terroristArr.length,
         hunter: hunterArr.length
     }
-    var  myJSON = JSON.stringify(obj);
-    fs.writeFileSync("statistics.json", myJSON );   
+    var myJSON = JSON.stringify(obj);
+    fs.writeFileSync("statistics.json", myJSON);
 
 
 
@@ -132,24 +132,21 @@ function run() {
 
 io.on('connection', function (socket) {
     socket.emit("matrix", matrix);
-    socket.on ("m", b)
-    socket.on ("pause", pause)
-    socket.on ("play", play)
-    socket.on ("kill", killeveryone)
+    socket.on("m", b)
+    socket.on("pause", pause)
+    socket.on("play", play)
+    socket.on("kill", killeveryone)
 
     socket.on("winter", changeRate)
-socket.on("spring", changeRate)
-socket.on("summer", changeRate)
-socket.on("autumn", changeRate)
-
-    // socket.on ("season", summer)
-    //socket.on ("season",  )
+    socket.on("spring", changeRate)
+    socket.on("summer", changeRate)
+    socket.on("autumn", changeRate)
 
 });
 
 
 //statistics
-function b(){
+function b() {
     let info = fs.readFileSync("statistics.json").toString()
     io.sockets.emit("info", info)
 
@@ -164,18 +161,16 @@ playArgument = false;
 function pause() {
     playArgument = false;
     clearInterval(id)
-    count=0
+    count = 0
 }
 
 
 let count = 1;
 var id;
 function play() {
-    if(count ==0){
+    if (count == 0) {
 
         id = setInterval(run, 1000);
-        //clearinterval(id)
-        // count=0
         count++
         playArgument = true;
     }
@@ -187,34 +182,39 @@ function play() {
 var id
 id = setInterval(run, frameRate)
 
-function changeRate(ww){
-    if(ww=="spring"){
+function changeRate(ww) {
+    if (ww == "spring") {
         frameRate = 600
     }
-    
-    else if(ww =="winter"){
+
+    else if (ww == "winter") {
         frameRate = 2000
     }
-    else if(ww =="autumn"){
-        frameRate = 1500
+    else if (ww == "autumn") {
+        frameRate = 1300
     }
-    else if(ww =="summer"){
-        frameRate = 1000
+    else if (ww == "summer") {
+        frameRate = 800
     }
     console.log(frameRate)
     clearInterval(id)
     id = setInterval(run, frameRate)
-    io.sockets.emit("ww",ww )
+    io.sockets.emit("ww", ww)
 }
 
 
 //clear
 
-function killeveryone(){
-    garssArr = []
-    // matrixi vrayov fra u inchqan tver ka dardznel 0
-    grassEaterArr = 0
-    GishatichArr=0
-    hunterArr =0
-    terroristArr =0
+function killeveryone() {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            matrix[i][j] = 0;
+            grassArr.length = 0;
+            grassEaterArr.length = 0;
+            GishatichArr.length = 0;
+            hunterArr.length = 0;
+            terroristArr.length = 0;
+        }
+    }
+
 }
