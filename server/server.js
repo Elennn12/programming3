@@ -136,6 +136,7 @@ io.on('connection', function (socket) {
     socket.on("pause", pause)
     socket.on("play", play)
     socket.on("kill", killeveryone)
+    socket.on ("kill", clearp)
 
     socket.on("winter", changeRate)
     socket.on("spring", changeRate)
@@ -217,4 +218,9 @@ function killeveryone() {
         }
     }
 
+}
+
+function clearp(){
+  let removepar = "sdhsg"
+    io.sockets.emit("clearp",removepar)
 }

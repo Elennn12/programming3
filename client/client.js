@@ -143,7 +143,7 @@ function autumn(){
     
     grassColor = "#888822"
     grassEaterColor = "red"
-    gishatichColor = "EDAF15"
+    gishatichColor = "gray"
 
     socket.emit("autumn", "autumn")
 }
@@ -178,3 +178,7 @@ function clickbuttunn() {
 
 }
 
+socket.on("clearp", removepar)
+function removepar (){
+    weather.innerText = " "
+}
